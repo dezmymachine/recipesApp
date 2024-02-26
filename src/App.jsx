@@ -1,16 +1,14 @@
-import Recipes from "./components/Pages/recipes"
-import Navbar from "./components/navbar"
-
-
+import Recipes from "./components/Pages/recipes";
+import Navbar from "./components/navbar";
+import "./index.css";
 
 function App() {
-
   return (
     <>
-    <Navbar />
-    <Recipes />
+      <Navbar />
+      <Recipes />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
