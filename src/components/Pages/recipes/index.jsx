@@ -10,11 +10,14 @@ import {
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import unvoid from "../../../assets/img/unvoid.svg";
+import loadingicon from "../../../assets/img/loading.svg";
 
 const Recipes = () => {
   const [recipes, setRecipes] = useState([]);
   const [keyword, setKeyword] = useState("");
+  const [loading, setLoading] = useState(false);
   const getRecipes = () => {
+    setLoading(true);
     //prepare URL
     const url = new URL("https://api.spoonacular.com/recipes/complexSearch");
     url.searchParams.append("apiKey", "7f9fdaadea9344299e1f4d0f4b731589");
@@ -28,7 +31,8 @@ const Recipes = () => {
       })
       .catch((error) => {
         console.log(error);
-      });
+      })
+      .finally(() => setLoading(false));
     //update recipes state
   };
   useEffect(getRecipes, [keyword]);
@@ -46,7 +50,9 @@ const Recipes = () => {
       />
 
       <Grid container spacing={3}>
-        {recipes.length > 0 ? (
+        {loading ? (
+          <img src={loadingicon} className="loading-icon" />
+        ) : recipes.length > 0 ? (
           recipes.map((recipe) => (
             <Grid key={recipe.id} item xs={4} mt={2}>
               <Card
