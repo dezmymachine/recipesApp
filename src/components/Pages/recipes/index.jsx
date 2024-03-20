@@ -11,7 +11,7 @@ import {
 import { useEffect, useState } from "react";
 import unvoid from "../../../assets/img/unvoid.svg";
 import loadingicon from "../../../assets/img/loading.svg";
-
+import { Link } from "react-router-dom";
 const Recipes = () => {
   const [recipes, setRecipes] = useState([]);
   const [keyword, setKeyword] = useState("");
@@ -67,14 +67,16 @@ const Recipes = () => {
                     alt={recipe.title}
                   />
                   <CardContent>
-                    <Typography
-                      style={{ color: "#436957" }}
-                      gutterBottom
-                      variant="h5"
-                      component="div"
-                    >
-                      {recipe.title}
-                    </Typography>
+                    <Link to={`/recipes/${recipe.id}`}>
+                      <Typography
+                        style={{ color: "#436957" }}
+                        gutterBottom
+                        variant="h5"
+                        component="div"
+                      >
+                        {recipe.title}
+                      </Typography>
+                    </Link>
                   </CardContent>
                 </CardActionArea>
               </Card>
