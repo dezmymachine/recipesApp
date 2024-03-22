@@ -19,14 +19,16 @@ const Recipes = () => {
   const getRecipes = () => {
     setLoading(true);
     //prepare URL
-    const url = new URL("https://api.spoonacular.com/recipes/complexSearch");
+    // const url = new URL("https://api.spoonacular.com/recipes/complexSearch");
+    const url = new URL("http://localhost:4000/recipes");
     url.searchParams.append("apiKey", "7f9fdaadea9344299e1f4d0f4b731589");
     url.searchParams.append("query", keyword);
     //fECTH RECIPES from AI
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
-        setRecipes(data.results);
+        setRecipes(data);
+        // setRecipes(data.results);
         // console.log(data);
       })
       .catch((error) => {
@@ -54,7 +56,7 @@ const Recipes = () => {
           <img src={loadingicon} className="loading-icon" />
         ) : recipes.length > 0 ? (
           recipes.map((recipe) => (
-            <Grid key={recipe.id} item xs={4} mt={2}>
+            <Grid key={recipe._id} item xs={4} mt={2}>
               <Card
                 sx={{ maxWidth: 345 }}
                 style={{ background: "#e6ddcc", height: "100%" }}
@@ -67,7 +69,7 @@ const Recipes = () => {
                     alt={recipe.title}
                   />
                   <CardContent>
-                    <Link to={`/recipes/${recipe.id}`}>
+                    <Link to={`/recipes/${recipe._id}`}>
                       <Typography
                         style={{ color: "#436957" }}
                         gutterBottom
