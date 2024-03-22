@@ -38,6 +38,7 @@ const VisuallyHiddenInput = styled("input")({
 export default function AddRecipe() {
   return (
     <Container sx={{ my: "1rem" }} maxWidth="lg">
+      <h2>Add recipe</h2>
       <TextField
         id="outlined-basic"
         label="Title"
@@ -62,10 +63,11 @@ export default function AddRecipe() {
       </TextField>
       <span>
         <TextField
-          id="outlined-basic"
+          id="outlined-multiline-static"
           label="Description"
-          variant="outlined"
+          multiline
           fullWidth
+          rows={4}
         />
       </span>
       <Stack spacing={2} direction="row" sx={{ my: "1rem" }}>
@@ -76,7 +78,7 @@ export default function AddRecipe() {
           tabIndex={-1}
           startIcon={<CloudUploadIcon />}
         >
-          Upload file
+          Upload image
           <VisuallyHiddenInput type="file" />
         </Button>
         <Button variant="contained">submit</Button>
