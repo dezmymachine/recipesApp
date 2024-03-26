@@ -12,9 +12,11 @@ const getRecipe = (...args) => {
 };
 
 const Recipee = () => {
+  const baseUrl = import.meta.env.VITE_RECIPE_APP_URL;
   const { id } = useParams();
   const { data, isLoading } = useSWR(
-    "https://api.spoonacular.com/recipes/{id}/information",
+    // "https://api.spoonacular.com/recipes/{id}/information"
+    `${baseUrl}/recipes/{id}`,
     getRecipe
   );
   console.log(data, isLoading);

@@ -12,7 +12,9 @@ import { useEffect, useState } from "react";
 import unvoid from "../../../assets/img/unvoid.svg";
 import loadingicon from "../../../assets/img/loading.svg";
 import { Link } from "react-router-dom";
+
 const Recipes = () => {
+  const baseUrl = import.meta.env.VITE_RECIPE_APP_URL;
   const [recipes, setRecipes] = useState([]);
   const [keyword, setKeyword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -20,9 +22,11 @@ const Recipes = () => {
     setLoading(true);
     //prepare URL
     // const url = new URL("https://api.spoonacular.com/recipes/complexSearch");
-    const url = new URL("http://localhost:4000/recipes");
-    url.searchParams.append("apiKey", "7f9fdaadea9344299e1f4d0f4b731589");
-    url.searchParams.append("query", keyword);
+    // const url = new URL("http://localhost:4000/recipes");
+    const url = `${baseUrl}/recipes`;
+
+    // url.searchParams.append("apiKey", "7f9fdaadea9344299e1f4d0f4b731589");
+    // url.searchParams.append("query", keyword);
     //fECTH RECIPES from AI
     fetch(url)
       .then((response) => response.json())
