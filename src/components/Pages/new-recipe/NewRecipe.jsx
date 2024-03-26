@@ -22,19 +22,35 @@ export default function NewRecipe() {
   const [message, setMessage] = useState("New Recipe Added Successfully!");
 
   const newRecipe = async (event) => {
+    const baseUrl = import.meta.env.VITE_RECIPE_APP_URL;
     // Set loading to true
+    setLoading(true);
     // Prevent default form submit behavior
+    event.preventDefault();
     // Get form data
+    const formData = new FormData(event.target);
     // Post form data to the backend
+
+    try {
+      const response = await fetch(`${baseUrl}/recipes`, {
+        method: "POST",
+        body: formData,
+      });
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+
     // Update message based on response status
     // Open collapsible Alert
     // Set loading to false
+    setLoading(false);
   };
   return (
     <>
       <Container sx={{ my: "2rem" }} maxWidth="sm">
         <h1>Add A New Recipe</h1>
-        <form>
+        <form onSubmit={newRecipe}>
           <TextField
             sx={{ mb: "2rem" }}
             fullWidth
