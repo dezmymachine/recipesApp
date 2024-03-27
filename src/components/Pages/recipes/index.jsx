@@ -69,7 +69,7 @@ const Recipes = () => {
                   <CardMedia
                     component="img"
                     height="140"
-                    image={`${baseUrl}/${recipe.image}`}
+                    image={`${baseUrl}/images/${recipe.image}`}
                     alt={recipe.title}
                   />
                   <CardContent>
