@@ -36,13 +36,18 @@ export default function NewRecipe() {
         method: "POST",
         body: formData,
       });
+      if (response.status !== 201) {
+        setMessage("Failed to add Recipe!");
+      }
       console.log(response);
     } catch (error) {
       console.log(error);
     }
 
-    // Update message based on response status
+    // Update message based on response status'
+
     // Open collapsible Alert
+    setOpen(true);
     // Set loading to false
     setLoading(false);
   };
